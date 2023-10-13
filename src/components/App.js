@@ -9,6 +9,8 @@ import Question from "./Question";
 const initialState = {
   questions: [],
   index: 0,
+  answer: null,
+  points: 0,
 
   // 'loading', 'error', 'ready', 'active', 'finished'
   status: "loading",
@@ -34,13 +36,20 @@ function reducer(state, action) {
         ...state,
         status: "active",
       };
+
+    case "newAnswer":
+      return {
+        ...state,
+        answer: action.payload,
+      };
+
     default:
       throw new Error("Action Unknown");
   }
 }
 export default function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
-  const { questions, status, index } = state;
+  const { questions, status, index, answer, points } = state;
 
   const numQuestions = questions.length;
 
@@ -74,7 +83,13 @@ export default function App() {
         {status === "ready" && (
           <StartScreen numQuestions={numQuestions} dispatch={dispatch} />
         )}
-        {status === "active" && <Question questions={questions[index]} />}
+        {status === "active" && (
+          <Question
+            questions={questions[index]}
+            dispatch={dispatch}
+            answer={answer}
+          />
+        )}
       </Main>
     </div>
   );
