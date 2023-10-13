@@ -111,6 +111,7 @@ progress {
   background-color: var(--color-medium);
   border-radius: 100px;
 }
+
 ::-webkit-progress-value {
   background-color: var(--color-theme);
   border-radius: 100px;
@@ -162,6 +163,7 @@ progress {
   border: 2px solid var(--color-theme);
   color: var(--color-light);
 }
+
 .btn-option.wrong {
   background-color: var(--color-accent);
   border: 2px solid var(--color-accent);
@@ -194,16 +196,7 @@ progress {
   margin-bottom: 4.8rem;
 }
 
-.loader-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 4rem;
-  gap: 1.6rem;
 
-  color: var(--color-medium);
-  font-size: 1.4rem;
-}
 
 .timer {
   float: left;
@@ -215,11 +208,23 @@ progress {
 }
 
 /* CREDIT: https://dev.to/afif/i-made-100-css-loaders-for-your-next-project-4eje */
+/* 
+
+.loader-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 4rem;
+  gap: 1.6rem;
+
+  color: var(--color-medium);
+  font-size: 1.4rem;
+} 
+
 .loader {
   width: 50px;
   height: 24px;
-  background: radial-gradient(circle closest-side, currentColor 90%, #0000) 0%
-      50%,
+  background: radial-gradient(circle closest-side, currentColor 90%, #0000) 0% 50%,
     radial-gradient(circle closest-side, currentColor 90%, #0000) 50% 50%,
     radial-gradient(circle closest-side, currentColor 90%, #0000) 100% 50%;
   background-size: calc(100% / 3) 12px;
@@ -231,16 +236,20 @@ progress {
   20% {
     background-position: 0% 0%, 50% 50%, 100% 50%;
   }
+
   40% {
     background-position: 0% 100%, 50% 0%, 100% 50%;
   }
+  
   60% {
     background-position: 0% 50%, 50% 100%, 100% 0%;
   }
+  
   80% {
     background-position: 0% 50%, 50% 50%, 100% 100%;
   }
 }
+*/
 
 /* ********** */
 /* First counter example */
@@ -257,4 +266,31 @@ progress {
 .counter * {
   font-size: inherit;
   padding: 0.8rem;
+}
+
+/* ********************** */
+/* Spinner */
+@keyframes spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.loading-spinner {
+  position: absolute;
+  top: 50%;
+  left: 46%;
+  /* transform: translate(-50%, -50%); */
+
+  width: 3rem;
+  height: 3rem;
+
+  border: 0.5rem solid var(--color-theme);
+  border-top: 0.5rem solid var(--color-dark);
+  border-radius: 50%;
+  animation: spinner 1.5s linear infinite;
 }
