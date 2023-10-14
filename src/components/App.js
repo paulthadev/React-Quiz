@@ -6,6 +6,7 @@ import Main from "./Main";
 import StartScreen from "./StartScreen";
 import Question from "./Question";
 import NextQuestion from "./NextQuestion";
+import Progress from "./Progress";
 
 const initialState = {
   questions: [],
@@ -66,6 +67,10 @@ export default function App() {
   const { questions, status, index, answer, points } = state;
 
   const numQuestions = questions.length;
+  const maxPossiblePoints = questions.reduce(
+    (prev, cur) => prev + cur.points,
+    0
+  );
 
   useEffect(function () {
     async function question() {
@@ -99,6 +104,14 @@ export default function App() {
         )}
         {status === "active" && (
           <>
+            <Progress
+              answer={answer}
+              index={index}
+              points={points}
+              numQuestions={numQuestions}
+              maxPossiblePoints={maxPossiblePoints}
+            />
+
             <Question
               questions={questions[index]}
               dispatch={dispatch}
