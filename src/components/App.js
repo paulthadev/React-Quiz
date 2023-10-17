@@ -112,7 +112,9 @@ export default function App() {
   useEffect(function () {
     async function question() {
       try {
-        const response = await fetch(`http://localhost:8000/questions`);
+        const response = await fetch(
+          `https://marbled-pewter-hydrofoil.glitch.me/questions`
+        );
         if (!response.ok) throw new Error("Failed to fetch");
 
         const data = await response.json();
