@@ -7,7 +7,7 @@ function Question() {
   return (
     <>
       <div>
-        <h4>{questions.question}</h4>
+        <h4>{question.question}</h4>
       </div>
 
       <Options question={question} />
